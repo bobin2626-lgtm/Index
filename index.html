@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Done! | Transforma el ocio en recompensa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo-principal: #E60000;
+            --naranja: #FF4D00;
+            --negro: #0a0a0a;
+            --gris-oscuro: #1a1a1a;
+            --blanco: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--negro); color: var(--blanco); line-height: 1.6; overflow-x: hidden; }
+
+        /* --- Header & Nav --- */
+        header { background: rgba(0,0,0,0.9); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; z-index: 1000; border-bottom: 2px solid var(--rojo-principal); }
+        .logo-nav { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--blanco); }
+        .logo-nav span { color: var(--rojo-principal); }
+        nav a { color: var(--blanco); text-decoration: none; margin-left: 20px; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: var(--rojo-principal); }
+
+        /* --- Hero Section --- */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle, #330000 0%, #000000 100%); padding: 0 10%; }
+        .hero img { width: 180px; margin-bottom: 20px; filter: drop-shadow(0 0 20px var(--rojo-principal)); }
+        .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; color: #ccc; margin-bottom: 30px; }
+        .btn-primary { background: var(--rojo-principal); color: white; padding: 15px 40px; text-decoration: none; font-weight: bold; border-radius: 50px; text-transform: uppercase; transition: 0.3s; }
+        .btn-primary:hover { background: var(--naranja); transform: scale(1.05); }
+
+        /* --- Secciones Generales --- */
+        section { padding: 80px 10%; }
+        .section-title { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--rojo-principal); margin-bottom: 40px; text-align: center; text-transform: uppercase; }
+
+        /* --- Grid de Características --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: var(--gris-oscuro); padding: 30px; border-radius: 15px; border-left: 5px solid var(--rojo-principal); transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); background: #222; }
+        .card h3 { margin-bottom: 15px; font-size: 1.3rem; }
+
+        /* --- Sistema de Rangos --- */
+        .ranks-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .rank-pill { background: #333; padding: 10px 20px; border-radius: 5px; font-weight: bold; border: 1px solid #444; }
+        .rank-pill span { color: var(--rojo-principal); }
+
+        /* --- Ventajas / Desventajas --- */
+        .split-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .list-box h3 { margin-bottom: 20px; color: var(--naranja); }
+        .list-box ul { list-style: none; }
+        .list-box li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .list-box li::before { content: '✓'; position: absolute; left: 0; color: var(--rojo-principal); font-weight: bold; }
+
+        footer { text-align: center; padding: 40px; background: #000; border-top: 1px solid #222; color: #666; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-nav">DONE<span>!</span></div>
+        <nav>
+            <a href="#concepto">Concepto</a>
+            <a href="#funciones">Funciones</a>
+            <a href="#rangos">Rangos</a>
+            <a href="#ventajas">Beneficios</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="DONE TRANS.jpg" alt="Logo Done!">
+        <h1>DONDE EL OCIO SE GANA</h1>
+        <p>La red social de productividad que transforma tus metas diarias en la llave para desbloquear el entretenimiento. [cite: 5, 116]</p>
+        <a href="#concepto" class="btn-primary">Descubrir más</a>
+    </section>
+
+    <section id="concepto">
+        <h2 class="section-title">¿De qué trata?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Productividad Social</h3>
+                <p>Done! es una plataforma enfocada en combatir la procrastinación, permitiendo que navegues en el feed solo después de cumplir tus objetivos. [cite: 3, 6]</p>
+            </div>
+            <div class="card">
+                <h3>Gamificación Real</h3>
+                <p>Utilizamos sistemas de puntos y rangos para motivar el cumplimiento de tus tareas diarias, semanales y anuales. [cite: 8, 42]</p>
+            </div>
+            <div class="card">
+                <h3>Verificación con IA</h3>
+                <p>Para evitar trampas, nuestra Inteligencia Artificial analiza las fotos que subes como evidencia de tu progreso. [cite: 58, 64]</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="funciones" style="background: var(--gris-oscuro);">
+        <h2 class="section-title">El Sistema de Recompensa</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>60 Minutos de Libertad</h3>
+                <p>Al completar una tarea, desbloqueas una hora de acceso al feed. Entre más produzcas, más tiempo obtienes. [cite: 90, 125]</p>
+            </div>
+            <div class="card">
+                <h3>Marketplace Educativo</h3>
+                <p>Usa tus puntos ganados para comprar cursos productivos, libros y contenido educativo exclusivo. [cite: 67, 70]</p>
+            </div>
+            <div class="card">
+                <h3>Feed Curado</h3>
+                <p>Olvídate del contenido superficial. Nuestro feed solo muestra reels educativos y de crecimiento personal. [cite: 100]</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="rangos">
+        <h2 class="section-title">Rangos de Productividad</h2>
+        <p style="text-align: center; margin-bottom: 30px; color: #888;">Evoluciona tu disciplina y desbloquea nuevos niveles de dificultad. [cite: 74, 85]</p>
+        <div class="ranks-container">
+            <div class="rank-pill">⛓️ Hierro: <span>20</span></div>
+            <div class="rank-pill">🥉 Bronce: <span>80</span></div>
+            <div class="rank-pill">🥈 Plata: <span>180</span></div>
+            <div class="rank-pill">🥇 Oro: <span>260</span></div>
+            <div class="rank-pill">💠 Platino: <span>380</span></div>
+            <div class="rank-pill">💎 Diamante: <span>520</span></div>
+            <div class="rank-pill">🏆 Maestro: <span>640</span></div>
+            <div class="rank-pill">🔥 Gran Maestro: <span>800</span></div>
+        </div>
+    </section>
+
+    <section id="ventajas" style="background: var(--gris-oscuro);">
+        <h2 class="section-title">Impacto en tu vida</h2>
+        <div class="split-list">
+            <div class="list-box">
+                <h3>Ventajas [cite: 102]</h3>
+                <ul>
+                    <li>Reduce la procrastinación [cite: 103]</li>
+                    <li>Promueve hábitos positivos [cite: 105]</li>
+                    <li>Organización integral (Día/Mes/Año) [cite: 108]</li>
+                    <li>Comunidad inspiradora [cite: 118]</li>
+                </ul>
+            </div>
+            <div class="list-box">
+                <h3>Desafíos [cite: 109]</h3>
+                <ul>
+                    <li>Requiere compromiso real [cite: 114]</li>
+                    <li>Uso de tecnología avanzada (IA) [cite: 112]</li>
+                    <li>Sistema restrictivo para algunos [cite: 111]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Done! App Concept por Ángel Díaz. Proyecto Taller de Diseño Gráfico V. </p>
+    </footer>
+
+</body>
+</html>
