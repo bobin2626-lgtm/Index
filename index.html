@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Done! | Transforma el ocio en recompensa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo-fuego: #A31D24;
+            --amarillo-fuego: #F9D442;
+            --negro-profundo: #000000;
+            --gris-card: rgba(18, 18, 18, 0.9);
+            --blanco: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background-color: var(--negro-profundo); 
+            color: var(--blanco); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            position: relative;
+        }
+
+        /* --- Fondo de Fénix (Marca de Agua) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            background-image: url('DONE LOGO BLANCO_Mesa de trabajo 3-01.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Header & Nav --- */
+        header { 
+            background: rgba(0,0,0,0.95); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: fixed; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 2px solid var(--rojo-fuego); 
+        }
+        
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-nav-img { height: 40px; width: auto; }
+        .logo-text { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--blanco); letter-spacing: 2px; }
+
+        nav a { 
+            color: var(--blanco); 
+            text-decoration: none; 
+            margin-left: 20px; 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            transition: 0.3s; 
+            font-weight: 700;
+        }
+        nav a:hover { color: var(--amarillo-fuego); }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            background: radial-gradient(circle at center, #2a0505 0%, #000000 100%); 
+            padding: 0 10%; 
+        }
+        
+        .hero-logo { 
+            width: 250px; 
+            margin-bottom: 20px; 
+            filter: drop-shadow(0 0 15px rgba(163, 29, 36, 0.4));
+        }
+
+        .hero h1 { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 3.5rem; 
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--amarillo-fuego), var(--rojo-fuego));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p { font-size: 1.2rem; max-width: 700px; color: #bbb; margin-bottom: 30px; }
+        .btn-primary { background: var(--rojo-fuego); color: white; padding: 15px 45px; text-decoration: none; font-weight: bold; border-radius: 5px; text-transform: uppercase; transition: 0.3s; border: 1px solid transparent; }
+        .btn-primary:hover { border-color: var(--amarillo-fuego); color: var(--amarillo-fuego); transform: translateY(-3px); background: transparent; }
+
+        /* --- NUEVA SECCIÓN: INTRODUCCIÓN --- */
+        .intro-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .intro-text h2 { font-family: 'Orbitron', sans-serif; color: var(--amarillo-fuego); margin-bottom: 20px; font-size: 2rem; }
+        .intro-text p { margin-bottom: 15px; color: #ccc; font-size: 1.1rem; }
+        .highlight-box { border-left: 4px solid var(--rojo-fuego); padding-left: 20px; margin: 30px 0; }
+
+        /* --- NUEVA SECCIÓN: CÓMO FUNCIONA --- */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .step-card {
+            background: rgba(255,255,255,0.03);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #222;
+        }
+        .step-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--rojo-fuego);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* --- Secciones Generales --- */
+        section { padding: 100px 10%; position: relative; }
+        .section-title { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; color: var(--amarillo-fuego); margin-bottom: 50px; text-align: center; text-transform: uppercase; letter-spacing: 3px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: var(--gris-card); padding: 40px; border-radius: 4px; border-bottom: 4px solid var(--rojo-fuego); transition: 0.4s; backdrop-filter: blur(5px); }
+        .card:hover { border-bottom-color: var(--amarillo-fuego); transform: translateY(-10px); }
+        .card h3 { margin-bottom: 15px; font-size: 1.3rem; color: var(--blanco); font-family: 'Orbitron', sans-serif; }
+
+        /* --- Seccion Cursos --- */
+        .course-card {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .course-card:hover { border-color: var(--rojo-fuego); }
+        .course-info { padding: 20px; }
+        .course-tag { background: var(--rojo-fuego); color: white; padding: 2px 10px; font-size: 0.7rem; border-radius: 3px; text-transform: uppercase; font-weight: bold; }
+        .course-price { color: var(--amarillo-fuego); font-weight: bold; display: block; margin-top: 10px; font-family: 'Orbitron', sans-serif; }
+        
+        /* --- Seccion Contactos/Mentores --- */
+        .mentor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .mentor-card {
+            background: #0a0a0a;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid #222;
+        }
+        .mentor-img { width: 60px; height: 60px; border-radius: 50%; background: #333; border: 2px solid var(--rojo-fuego); }
+        .mentor-name { font-weight: bold; color: var(--blanco); display: block; }
+        .mentor-role { font-size: 0.8rem; color: #777; }
+        .btn-contact { color: var(--amarillo-fuego); text-decoration: none; font-size: 0.8rem; font-weight: bold; margin-top: 5px; display: inline-block; }
+
+        /* --- Sistema de Rangos --- */
+        .ranks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; text-align: center; }
+        .rank-item { background: rgba(10, 10, 10, 0.8); padding: 30px 20px; border: 1px solid #222; border-radius: 10px; transition: 0.3s; backdrop-filter: blur(10px); }
+        .rank-item:hover { border-color: var(--amarillo-fuego); transform: translateY(-5px); }
+        .rank-item img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 15px; }
+        .rank-name { display: block; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: var(--amarillo-fuego); font-weight: 900; margin-bottom: 5px; }
+        .rank-points { display: block; font-size: 0.85rem; color: var(--rojo-fuego); font-weight: 700; margin-bottom: 15px; }
+        .rank-desc { font-size: 0.8rem; color: #999; }
+
+        footer { text-align: center; padding: 60px; background: #000; border-top: 1px solid var(--rojo-fuego); color: #555; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .intro-container { grid-template-columns: 1fr; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="Done Logo.png" alt="Done Logo" class="logo-nav-img">
+            <div class="logo-text">DONE!</div>
+        </div>
+        <nav>
+            <a href="#concepto">Concepto</a>
+            <a href="#uso">Cómo usar</a>
+            <a href="#rangos">Rangos</a>
+            <a href="#cursos">Cursos</a>
+            <a href="#mentores">Comunidad</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="Done Logo.png" alt="Logo Done!" class="hero-logo">
+        <h1>DONDE EL OCIO SE GANA</h1>
+        <p>La red social de productividad que transforma tus metas diarias en la llave para desbloquear el entretenimiento.</p>
+        <a href="#concepto" class="btn-primary">Iniciar Desafío</a>
+    </section>
+
+    <section id="concepto">
+        <div class="intro-container">
+            <div class="intro-text">
+                <h2>El Manifiesto Done!</h2>
+                <p>En un mundo diseñado para distraernos, <strong>Done!</strong> nace como una herramienta de resistencia. No somos una app de tareas común; somos un ecosistema de gamificación donde tu disciplina es tu moneda de cambio.</p>
+                <div class="highlight-box">
+                    <p><em>"La verdadera libertad no es hacer lo que quieras, sino tener el control sobre lo que haces."</em></p>
+                </div>
+                <p>Nuestra plataforma utiliza la psicología de la recompensa para ayudarte a construir hábitos atómicos. Si no trabajas, no juegas. Si produces, evolucionas.</p>
+            </div>
+            <div class="card">
+                <h3>¿Por qué elegirnos?</h3>
+                <ul>
+                    <li style="margin-bottom: 10px;">✅ <strong>Gamificación Real:</strong> Sube de nivel según tu esfuerzo real.</li>
+                    <li style="margin-bottom: 10px;">✅ <strong>Comunidad de Alto Nivel:</strong> Rodeate de mentores y líderes.</li>
+                    <li style="margin-bottom: 10px;">✅ <strong>Enfoque en Diseño:</strong> Una interfaz oscura y agresiva para un enfoque total.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="uso" style="background: rgba(163, 29, 36, 0.05);">
+        <h2 class="section-title">Tu Camino a la Maestría</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-num">01</span>
+                <h3>Define Metas</h3>
+                <p>Configura tus objetivos diarios. Desde estudiar diseño hasta entrenar en el gym.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">02</span>
+                <h3>Gana Puntos</h3>
+                <p>Cada tarea completada te otorga puntos de experiencia (PTS) validados por la comunidad.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">03</span>
+                <h3>Desbloquea</h3>
+                <p>Usa tus puntos para "comprar" tiempo de ocio o acceder a cursos exclusivos en nuestro Marketplace.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">04</span>
+                <h3>Evoluciona</h3>
+                <p>Sube de rango y conviértete en un <strong>Gran Maestro</strong>. El fénix te espera.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="rangos">
+        <h2 class="section-title">Sistema de Rangos</h2>
+        <div class="ranks-grid">
+            <div class="rank-item">
+                <img src="Rangos_Hierro.png" alt="Hierro">
+                <span class="rank-name">HIERRO</span>
+                <span class="rank-points">0 - 100 PTS</span>
+                <p class="rank-desc">El inicio del camino. Estás forjando los cimientos de tu nueva disciplina.</p>
+            </div>
+            <div class="rank-item">
+                <img src="Rangos_Bronce.png" alt="Bronce">
+                <span class="rank-name">BRONCE</span>
+                <span class="rank-points">101 - 300 PTS</span>
+                <p class="rank-desc">Has demostrado constancia. Los hábitos comienzan a endurecerse.</p>
+            </div>
+            <div class="rank-item">
+                <img src="Rangos_Plata.png" alt="Plata">
+                <span class="rank-name">PLATA</span>
+                <span class="rank-points">301 - 600 PTS</span>
+                <p class="rank-desc">Brillas con luz propia. Tu productividad es notable y tu enfoque agudo.</p>
+            </div>
+            <div class="rank-item">
+                <img src="Rangos_Oro.png" alt="Oro">
+                <span class="rank-name">ORO</span>
+                <span class="rank-points">601 - 1000 PTS</span>
+                <p class="rank-desc">Nivel de élite. Has dominado la gestión del tiempo con éxito.</p>
+            </div>
+            <div class="rank-item">
+                <img src="Rangos_Platino.png" alt="Platino">
+                <span class="rank-name">PLATINO</span>
+                <span class="rank-points">1001 - 1500 PTS</span>
+                <p class="rank-desc">Excelencia inquebrantable. Eres un referente de eficiencia.</p>
+            </div>
+            <div class="rank-item">
+                <img src="Rangos_Diamante.png" alt="Diamante">
+                <span class="rank-name">DIAMANTE</span>
+                <span class="rank-points">1501 - 2500 PTS</span>
+                <p class="rank-desc">Dureza absoluta. Nada te distrae de tus metas. Voluntad indestructible.</p>
+            </div>
+            <div class="rank-item">
+                <img src="Rangos_Maestro.png" alt="Maestro">
+                <span class="rank-name">MAESTRO</span>
+                <span class="rank-points">2501 - 4000 PTS</span>
+                <p class="rank-desc">Posees sabiduría sobre tu tiempo. Equilibrio perfecto alcanzado.</p>
+            </div>
+            <div class="rank-item">
+                <img src="Rangos_Gran.png" alt="Gran Maestro">
+                <span class="rank-name">GRAN MAESTRO</span>
+                <span class="rank-points">+4000 PTS</span>
+                <p class="rank-desc">Has renacido como el fénix. Dominas el arte de la vida productiva.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cursos" style="background: rgba(5,5,5,0.8);">
+        <h2 class="section-title">Marketplace de Cursos</h2>
+        <div class="grid">
+            <div class="course-card">
+                <div class="course-info">
+                    <span class="course-tag">Diseño</span>
+                    <h3>Fundamentos de Brand Design</h3>
+                    <p>Domina la construcción geométrica y manuales de identidad.</p>
+                    <span class="course-price">500 PTS</span>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-info">
+                    <span class="course-tag">Hábitos</span>
+                    <h3>Sistemas de Productividad GTD</h3>
+                    <p>Aprende a vaciar tu mente y ejecutar tareas con precisión.</p>
+                    <span class="course-price">350 PTS</span>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-info">
+                    <span class="course-tag">Tecnología</span>
+                    <h3>UI/UX para Aplicaciones</h3>
+                    <p>Diseña interfaces que cautiven y sean funcionales.</p>
+                    <span class="course-price">600 PTS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mentores">
+        <h2 class="section-title">Conecta con Mentores</h2>
+        <div class="mentor-grid">
+            <div class="mentor-card">
+                <div class="mentor-img"></div>
+                <div>
+                    <span class="mentor-name">Alex Rivera</span>
+                    <span class="mentor-role">Especialista en Brand Design</span>
+                    <a href="#" class="btn-contact">Contactar</a>
+                </div>
+            </div>
+            <div class="mentor-card">
+                <div class="mentor-img"></div>
+                <div>
+                    <span class="mentor-name">Arturo Castillo</span>
+                    <span class="mentor-role">Instructor de Desarrollo Web</span>
+                    <a href="#" class="btn-contact">Contactar</a>
+                </div>
+            </div>
+            <div class="mentor-card">
+                <div class="mentor-img"></div>
+                <div>
+                    <span class="mentor-name">Elena Vega</span>
+                    <span class="mentor-role">Coach de Alto Rendimiento</span>
+                    <a href="#" class="btn-contact">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Done! App Concept | Proyecto por Ángel Díaz</p>
+        <p style="margin-top: 10px; color: var(--rojo-fuego); font-weight: bold;">Taller de Diseño Gráfico V</p>
+    </footer>
+
+</body>
+</html>
